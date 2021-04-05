@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'core',
     'attractions',
     'comment',
-    'review'
+    'review',
+    'address',
 
 ]
 
