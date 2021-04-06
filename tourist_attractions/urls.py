@@ -17,10 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from core.api.viewsets import TouristAttractionViewSet
+from attractions.api.viewsets import ComplementAttractionViewSet
+from comment.api.viewsets import CommentViewSet
+
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'toattraction', TouristAttractionViewSet)
+router.register(r'attraction', ComplementAttractionViewSet)
+router.register(r'comment', CommentViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,5 +1,3 @@
-from django.urls import path, include
-from django.contrib.auth.models import User
 from rest_framework import viewsets
 from core.models import TouristAttraction
 from .serializers import TouristAttractionSerializer
