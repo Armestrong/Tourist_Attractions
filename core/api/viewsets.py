@@ -5,5 +5,8 @@ from .serializers import TouristAttractionSerializer
 
 # ViewSets define the view behavior.
 class TouristAttractionViewSet(viewsets.ModelViewSet):
-    queryset = TouristAttraction.objects.all()
+    # queryset = TouristAttraction.objects.all()
     serializer_class = TouristAttractionSerializer
+
+    def get_queryset(self):
+        return TouristAttraction.objects.filter(approved=True)
