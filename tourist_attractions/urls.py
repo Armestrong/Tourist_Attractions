@@ -20,6 +20,7 @@ from core.api.viewsets import TouristAttractionViewSet
 from attractions.api.viewsets import ComplementAttractionViewSet
 from comment.api.viewsets import CommentViewSet
 from address.api.viewsets import AddressViewSet
+from review.api.viewsets import ReviewViewSet
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -28,6 +29,7 @@ router.register(r'toattraction', TouristAttractionViewSet)
 router.register(r'attractions', ComplementAttractionViewSet)
 router.register(r'addresses', AddressViewSet)
 router.register(r'comments', CommentViewSet)
+router.register(r'reviews', ReviewViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
