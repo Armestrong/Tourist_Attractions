@@ -5,4 +5,4 @@ from attractions.models import ComplementAttraction
 class ComplementAttractionSerializer(ModelSerializer):
     class Meta:
         model = ComplementAttraction
-        fields = ['id', 'name', 'description', 'opening_hours']
+        fields = ['id', 'name', 'description', 'opening_hours', 'image']

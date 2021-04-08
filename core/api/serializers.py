@@ -6,4 +6,4 @@ from core.models import TouristAttraction
 class TouristAttractionSerializer(ModelSerializer):
     class Meta:
         model = TouristAttraction
-        fields = ['id', 'name', 'description']
+        fields = ['id', 'name', 'description', 'approved', 'image']
