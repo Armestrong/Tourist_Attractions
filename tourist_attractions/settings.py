@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'comment',
     'review',
     'address',
+    'django_filters',
 
 ]
 
@@ -123,3 +124,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = 'images'
 
 MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
