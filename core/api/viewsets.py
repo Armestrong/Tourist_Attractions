@@ -8,17 +8,40 @@ from .serializers import TouristAttractionSerializer
 
 # ViewSets define the view behavior.
 class TouristAttractionViewSet(viewsets.ModelViewSet):
-    # queryset = TouristAttraction.objects.all()
     serializer_class = TouristAttractionSerializer
 
-    # Filtering the query
-    def get_queryset(self):
-        return TouristAttraction.objects.filter(approved=True)
+    # --- Ways to do/filter a query
 
-    # overwrite CRUD method
+    # first
+    # Simple query
+    # queryset = TouristAttraction.objects.all()
+
+    # Second
+    # Filtering the query
+    # def get_queryset(self):
+    #     return TouristAttraction.objects.filter(approved=True)
+
+    # Third
+    # Filtering the query with query_string
+    def get_queryset(self):
+        id = self.request.query_params.get('id', None)
+        name = self.request.query_params.get('name', None)
+        description = self.request.query_params.get('description', None)
+        queryset = TouristAttraction.objects.filter()
+
+        if id:
+            queryset = TouristAttraction.objects.filter(pk=id)
+        if name:
+            queryset = queryset.filter(name__iexact=name)
+        if description:
+            queryset = queryset.filter(description__iexact=description)
+
+        return queryset
+
+    # --- Overwrite CRUD method
 
     # overwrite GET-list or GETAll method
-    def list(self,request, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         return super(TouristAttractionViewSet, self).list(request, *args, **kwargs)
 
     # overwrite CREATE(post) method
