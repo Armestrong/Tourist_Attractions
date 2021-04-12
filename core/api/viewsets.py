@@ -12,6 +12,7 @@ class TouristAttractionViewSet(viewsets.ModelViewSet):
     serializer_class = TouristAttractionSerializer
     filter_backends = [SearchFilter]
     search_fields = ['name', 'description', 'address__line1']
+    lookup_field = ['name']  # by default it's id, because id it's unique
 
     # --- Ways to do/filter a query
 
