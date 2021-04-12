@@ -1,6 +1,8 @@
 from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from core.models import TouristAttraction
@@ -11,7 +13,11 @@ from .serializers import TouristAttractionSerializer
 class TouristAttractionViewSet(viewsets.ModelViewSet):
     serializer_class = TouristAttractionSerializer
     filter_backends = [SearchFilter]
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+
     search_fields = ['name', 'description', 'address__line1']
+
     # lookup_field = ['name']  # by default it's id, because id it's unique
 
     # --- Ways to do/filter a query
