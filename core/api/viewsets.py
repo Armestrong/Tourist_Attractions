@@ -28,13 +28,13 @@ class TouristAttractionViewSet(viewsets.ModelViewSet):
     # Third
     # Filtering the query with query_string
     def get_queryset(self):
-        id = self.request.query_params.get('id', None)
+        pk = self.request.query_params.get('id', None)
         name = self.request.query_params.get('name', None)
         description = self.request.query_params.get('description', None)
         queryset = TouristAttraction.objects.filter()
 
-        if id:
-            queryset = TouristAttraction.objects.filter(pk=id)
+        if pk:
+            queryset = TouristAttraction.objects.filter(pk=pk)
         if name:
             queryset = queryset.filter(name__iexact=name)
         if description:
