@@ -13,4 +13,4 @@ class ComplementAttractionViewSet(viewsets.ModelViewSet):
 
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     # filter_fields = ['name', 'description', 'opening_hours']
-    # obs: but you'll need delete the REST_FRAMEWORK from settings.py
+    # obs: but you'll need delete the REST_FRAMEWORK from base.py
