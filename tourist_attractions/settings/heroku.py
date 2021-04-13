@@ -5,7 +5,6 @@ from tourist_attractions.settings.base import *
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
-    DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 )
 
 # False if not in os.environ
