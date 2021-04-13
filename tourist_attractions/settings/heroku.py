@@ -1,16 +1,16 @@
-
 import environ
 
 from tourist_attractions.settings.base import *
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 )
 
 # False if not in os.environ
 DEBUG = env('DEBUG')
-
+DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
 # Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
 
