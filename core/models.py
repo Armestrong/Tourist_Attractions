@@ -23,9 +23,9 @@ class TouristAttraction(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def complete_description2(self):
-        return '%s - %s' % (self.name, self.description)
+    # @property
+    # def complete_description2(self):
+    #     return '%s - %s' % (self.name, self.description)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

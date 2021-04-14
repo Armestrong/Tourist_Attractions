@@ -14,8 +14,8 @@ from .serializers import TouristAttractionSerializer
 class TouristAttractionViewSet(viewsets.ModelViewSet):
     serializer_class = TouristAttractionSerializer
     filter_backends = [SearchFilter]
-    permission_classes = [IsAuthenticated]
-    # authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    authentication_classes = [TokenAuthentication]
 
     search_fields = ['name', 'description', 'address__line1']
 
@@ -63,7 +63,7 @@ class TouristAttractionViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         return super(TouristAttractionViewSet, self).destroy(request, *args, **kwargs)
 
-    # overwrite RETRIVE(to make LOGS) method
+    # overwrite RETRIEVE(to make LOGS) method
     def retrieve(self, request, *args, **kwargs):
         return super(TouristAttractionViewSet, self).retrieve(request, *args, **kwargs)
 

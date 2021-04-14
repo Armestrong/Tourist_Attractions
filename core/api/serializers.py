@@ -12,18 +12,33 @@ from review.api.serializers import ReviewSerializers
 
 class TouristAttractionSerializer(ModelSerializer):
     attractions = ComplementAttractionSerializer(many=True)
-    comments = CommentSerializer(many=True)
-    address = AddressSerializer()
-    reviews = ReviewSerializers(many=True)
+    address = AddressSerializer(read_only=True)
+    # comments = CommentSerializer(many=True)
+    # reviews = ReviewSerializers(many=True)
     complete_description = SerializerMethodField()
 
     class Meta:
         model = TouristAttraction
-        fields = ['id', 'name', 'description', 'complete_description', 'complete_description2',
+        fields = ['id', 'name', 'description', 'complete_description',
                   'approved',
                   'minimal_age', 'attractions',
-                  'comments', 'reviews',
                   'address', 'image']
+        read_only_fields = ['comments', 'reviews']
 
     def get_complete_description(self, obj):
         return '%s - %s' % (obj.name, obj.description)
+
+    # Method to create the attractions
+    def create_attractions(self, attractions, tourist):
+        for attraction in attractions:
+            at = attraction.objects.create(**attraction)
+            tourist.attractions.add(at)
+
+    # override the create method to create the tourist attraction without a attracrions nested
+    def create(self, validated_data):
+        attractions = validated_data['attractions']
+        del validated_data['attractions']
+        tourist = TouristAttraction.objects.create(**validated_data)
+        self.create_attractions(attractions, tourist)
+
+        return tourist

@@ -27,7 +27,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'toattraction', TouristAttractionViewSet, basename='TouristAttraction')
+router.register(r'toattractions', TouristAttractionViewSet, basename='TouristAttraction')
 router.register(r'attractions', ComplementAttractionViewSet)
 router.register(r'addresses', AddressViewSet)
 router.register(r'comments', CommentViewSet)
