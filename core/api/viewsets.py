@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
@@ -19,7 +20,7 @@ class TouristAttractionViewSet(viewsets.ModelViewSet):
 
     search_fields = ['name', 'description', 'address__line1']
 
-    # lookup_field = ['name']  # by default it's id, because id it's unique
+    lookup_field = "id"  # by default it's id, because id it's unique
 
     # --- Ways to do/filter a query
 
@@ -78,7 +79,17 @@ class TouristAttractionViewSet(viewsets.ModelViewSet):
     # @action(methods=['post', 'get'], detail=True)
     # def denunciar(self, request, pk=None):
     #     pass
-
+    #
     # @action(methods=['post', 'get'], detail=False)  # Do not need pass the res
     # def teste(self, request, pk=None):
     #     pass
+
+    # This is a solutions to nested exist values in database with the TouristAttraction
+    @action(methods=['post', 'get'], detail=True)  # Do not need pass the res
+    def linking_attraction(self, request, id):
+        attractions = request.data['ids']
+
+        spots = TouristAttraction.objects.get(id=id)
+        spots.attractions.set(attractions)
+        spots.save()
+        return HttpResponse('Attractions nested with TouristAttractions')

@@ -9,6 +9,10 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
 
+class IdentifierDoc(models.Model):
+    description = models.CharField(max_length=100)
+
+
 class TouristAttraction(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
@@ -19,6 +23,7 @@ class TouristAttraction(models.Model):
     reviews = models.ManyToManyField(Review)
     address = models.ForeignKey(Addres, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='tourist_attractions', null=True, blank=True)
+    identifier_doc = models.OneToOneField(IdentifierDoc, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name
