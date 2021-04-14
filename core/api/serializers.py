@@ -19,7 +19,8 @@ class TouristAttractionSerializer(ModelSerializer):
 
     class Meta:
         model = TouristAttraction
-        fields = ['id', 'name', 'description', 'complete_description', 'complete_description2', 'approved',
+        fields = ['id', 'name', 'description', 'complete_description', 'complete_description2',
+                  'approved',
                   'minimal_age', 'attractions',
                   'comments', 'reviews',
                   'address', 'image']
